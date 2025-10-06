@@ -17,6 +17,9 @@ jobs:
         with:
           name: Mochawesome report
           path: cypress/reports/html
+          if-no-files-found: warn
+          compression-level: 6
+          overwrite: true 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
@@ -43,6 +46,9 @@ jobs:
         with:
           name: Mochawesome report
           path: cypress/reports/html
+          if-no-files-found: warn
+          compression-level: 6
+          overwrite: true 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
