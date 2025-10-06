@@ -1,30 +1,30 @@
 name: End-to-end tests
 
-# Trigger workflow on pushes to main branch
+# Automatically trigger workflow
 on:
   push:
     branches:
-      - main
-    # Ignore changes in workflow or report files to avoid loops
-    paths-ignore:
-      - '.github/**'
-      - 'cypress/reports/**'
+      - main   # triggers when you push to main
+  pull_request:
+    branches:
+      - main   # triggers when a PR targets main
 
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
+
     steps:
-      # Checkout the repo
+      # Checkout the repository
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Setup Node.js (optional, if your project needs specific Node)
+      # Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      # Install npm dependencies
+      # Install dependencies
       - name: Install dependencies
         run: npm ci
 
@@ -35,8 +35,24 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
+
+      # Upload Cypress screenshots
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      # Upload Cypress videos
+      - name: Upload videos
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
+      # Upload test reports
       - name: Upload test report
         uses: actions/upload-artifact@v3
         with:
           name: cypress-report
-          path: cypress/reports/html
+          path: cypress/reports
