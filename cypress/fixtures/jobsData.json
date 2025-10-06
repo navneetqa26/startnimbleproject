@@ -1,0 +1,13 @@
+{
+  "validUser": {
+    "username": "qaengineer572@gmail.com",
+    "password": "123456Q",
+    "enterjob": "Software Engineer",
+    "jobdescriptions": "This is the job related to Software Engineer"
+
+  },
+  "invalidUser": {
+    "email": "invalid@example.com",
+    "password": "wrongPassword"
+  }
+}
