@@ -23,8 +23,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           command: npm run tests:jobs  
-      - name: Cypress run
-        uses: actions/upload-artifact@v4
+      - name: Cypress Report
+        uses: actions/upload-artifact@v3
         with:
           name: Mochawesome report
           path: cypress/reports/html
