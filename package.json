@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "tests:jobs": "npx cypress run --spec cypress/e2e/tests/login.cy.js",
+    "tests:jobs": "npx cypress run --spec cypress/e2e/tests/jobs.cy.js",
+    "tests:login": "npx cypress run --spec cypress/e2e/tests/login.cy.js",
      "report": "npx mochawesome-merge cypress/reports/*.json > mochawesome.json && npx marge mochawesome.json --reportDir cypress/reports --inline --overwrite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
