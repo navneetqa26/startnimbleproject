@@ -1,58 +1,38 @@
 name: End-to-end tests
 
-# Automatically trigger workflow
 on:
   push:
     branches:
-      - main   # triggers when you push to main
+      - main
   pull_request:
     branches:
-      - main   # triggers when a PR targets main
+      - main
 
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
 
     steps:
-      # Checkout the repository
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Setup Node.js
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      # Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Run Cypress tests
-      - name: Cypress run
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           start: npm start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
 
-      # Upload Cypress screenshots
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v3
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-      # Upload Cypress videos
-      - name: Upload videos
-        uses: actions/upload-artifact@v3
-        with:
-          name: cypress-videos
-          path: cypress/videos
-
-      # Upload test reports
-      - name: Upload test report
-        uses: actions/upload-artifact@v3
+      - name: Upload Cypress reports
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-report
           path: cypress/reports
