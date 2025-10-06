@@ -29,6 +29,7 @@ jobs:
         with:
           command: npm run tests:jobs  
       - name: Cypress Report
+        if :  always()
         uses: actions/upload-artifact@v4
         with:
           name: Mochawesome report
