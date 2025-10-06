@@ -13,7 +13,7 @@ jobs:
         with:
           command: npm run tests:login  
       - name: Cypress Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Mochawesome report
           path: cypress/reports/html
@@ -29,7 +29,7 @@ jobs:
         with:
           command: npm run tests:jobs  
       - name: Cypress Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Mochawesome report
           path: cypress/reports/html
